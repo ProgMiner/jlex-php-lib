@@ -1,6 +1,6 @@
 {
-    "name": "progminer/php-lex",
-    "description": "JLexPHP PHP port",
+    "name": "progminer/jlex-php-lib",
+    "description": "PHP classes for JLexPHP generated lexers",
     "authors": [
         {
             "name": "Eridan Domoratskiy",
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PHPLex\\": "src"
+            "JLexPHP\\": "src"
         },
         "classmap": [
             "pdg-classes"
