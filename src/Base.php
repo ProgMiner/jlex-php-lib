@@ -124,7 +124,7 @@ class Base {
     protected function yy_advance() {
         if ($this->yy_buffer_index < $this->yy_buffer_read) {
             if (!isset($this->yy_buffer[$this->yy_buffer_index])) {
-                return $this->YY_EOF;
+                return static::YY_EOF;
             }
 
             return ord($this->yy_buffer[$this->yy_buffer_index++]);
@@ -142,7 +142,7 @@ class Base {
 
             $data = fread($this->yy_reader, 8192);
             if ($data === false || strlen($data) === 0) {
-                return $this->YY_EOF;
+                return static::YY_EOF;
             }
 
             $this->yy_buffer .= $data;
@@ -153,7 +153,7 @@ class Base {
             $data = fread($this->yy_reader, 8192);
 
             if ($data === false || strlen($data) === 0) {
-                return $this->YY_EOF;
+                return static::YY_EOF;
             }
 
             $this->yy_buffer .= $data;
