@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPLex;
+namespace JLexPHP;
 
 class Token
 {
