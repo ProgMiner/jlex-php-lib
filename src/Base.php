@@ -97,7 +97,7 @@ class Base {
             $type = $this->yytext();
         }
 
-        return $this->annotateToken(new Token($type));
+        return $this->annotateToken(new Token(['type' => $type]));
     }
 
     /**
