@@ -6,7 +6,7 @@ class Token
 {
     use \PHPDataGen\DataClassTrait;
     private const FIELDS = ['type' => 'Type', 'value' => 'Value', 'line' => 'Line', 'col' => 'Col'];
-    private $type = '';
+    private $type = null;
     private $value = '';
     private $line = 0;
     private $col = 0;
@@ -16,15 +16,15 @@ class Token
             $this->{$field} = $this->{'validate' . self::FIELDS[$field]}($value);
         }
     }
-    public function &getType() : string
+    public function &getType()
     {
         return $this->type;
     }
-    protected function validateType($value) : string
+    protected function validateType($value)
     {
         return $value;
     }
-    public function setType($value) : string
+    public function setType($value)
     {
         $oldValue = $this->type;
         $this->type = $this->validateType($value);

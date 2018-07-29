@@ -32,7 +32,7 @@ namespace JLexPHP;
 
 final class Token {
 
-    var type: string;
+    var type;
     var value: string;
 
     var line: int;
