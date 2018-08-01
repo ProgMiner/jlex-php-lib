@@ -12,11 +12,9 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.1",
-        "nikic/php-parser": "^4.0.3",
         "progminer/php-datagen-lib": "master-dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7",
         "progminer/php-datagen": "master-dev"
     },
     "autoload": {
