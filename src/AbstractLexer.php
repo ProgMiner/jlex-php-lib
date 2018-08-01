@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /* MIT License
 
@@ -28,7 +28,11 @@ SOFTWARE. */
 
 namespace JLexPHP;
 
-class AbstractLexer {
+/**
+ * @author Wez Furlong
+ * @author Eridan Domoratskiy
+ */
+abstract class AbstractLexer {
     const YY_F          = -1;
     const YY_NO_STATE   = -1;
     const YY_NOT_ACCEPT = 0;
@@ -37,7 +41,7 @@ class AbstractLexer {
     const YY_NO_ANCHOR  = 4;
     const YYEOF         = -1;
 
-    static $yy_error_string = [
+    protected static $yy_error_string = [
         'INTERNAL' => "Error: Internal error.\n",
         'MATCH'    => "Error: Unmatched input.\n"
     ];
@@ -79,20 +83,24 @@ class AbstractLexer {
     protected $yy_count_chars = false;
 
     /**
-     * @param resource $stream Source of code
+     * @param resource|string $stream Source of code
      */
     public function __construct($stream) {
+        if (is_string($stream)) {
+            $stream = fopen('data://text/plain,'.$stream, 'r');
+        }
+
         $this->yy_reader = $stream;
     }
 
     /**
      * Creates an annotated token.
      *
-     * @param string|null $type Token type
+     * @param int|null $type Token type
      *
      * @return Token
      */
-    public function createToken(?string $type = null): Token {
+    public function createToken(?int $type = null): Token {
         if (is_null($type)) {
             $type = ord($this->yytext());
         }
