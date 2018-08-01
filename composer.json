@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "JLexPHP\\": "src"
+            "JLexPHP\\": "lib"
         },
         "classmap": [
             "pdg-classes"
