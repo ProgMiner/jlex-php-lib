@@ -1,6 +1,7 @@
 {
     "name": "progminer/jlex-php-lib",
     "description": "PHP classes for JLexPHP generated lexers",
+    "license": "MIT",
     "authors": [
         {
             "name": "Eridan Domoratskiy",

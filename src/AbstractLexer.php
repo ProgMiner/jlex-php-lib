@@ -1,34 +1,34 @@
 <?php
 
-/* Copyright 2018 Eridan Domoratskiy
-Based on JLexPHP which is:
+/* MIT License
 
-  Copyright 2006 Wez Furlong, OmniTI Computer Consulting, Inc.
-  Based on JLex which is:
+Copyright (c) 2018 Eridan Domoratskiy
 
-         JLEX COPYRIGHT NOTICE, LICENSE, AND DISCLAIMER
-    Copyright 1996-2000 by Elliot Joel Berk and C. Scott Ananian
+Copyright (c) 2006 Wez Furlong, OmniTI Computer Consulting, Inc.
 
-    Permission to use, copy, modify, and distribute this software and its
-    documentation for any purpose and without fee is hereby granted,
-    provided that the above copyright notice appear in all copies and that
-    both the copyright notice and this permission notice and warranty
-    disclaimer appear in supporting documentation, and that the name of
-    the authors or their employers not be used in advertising or publicity
-    pertaining to distribution of the software without specific, written
-    prior permission.
+Copyright (c) 1996-2000 Elliot Joel Berk and C. Scott Ananian
 
-    The authors and their employers disclaim all warranties with regard to
-    this software, including all implied warranties of merchantability and
-    fitness. In no event shall the authors or their employers be liable
-    for any special, indirect or consequential damages or any damages
-    whatsoever resulting from loss of use, data or profits, whether in an
-    action of contract, negligence or other tortious action, arising out
-    of or in connection with the use or performance of this software. */
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. */
 
 namespace JLexPHP;
 
-class Base {
+class AbstractLexer {
     const YY_F          = -1;
     const YY_NO_STATE   = -1;
     const YY_NOT_ACCEPT = 0;
@@ -94,7 +94,7 @@ class Base {
      */
     public function createToken(?string $type = null): Token {
         if (is_null($type)) {
-            $type = $this->yytext();
+            $type = ord($this->yytext());
         }
 
         return $this->annotateToken(new Token(['type' => $type]));
@@ -233,7 +233,7 @@ class Base {
         flush();
 
         if ($fatal) {
-            throw new \Exception('PHPLex fatal error '.self::$yy_error_string[$code]);
+            throw new \Exception('JLexPHP fatal error '.self::$yy_error_string[$code]);
         }
     }
 }
